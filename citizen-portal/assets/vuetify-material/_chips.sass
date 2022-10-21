@@ -1,0 +1,17 @@
+@import "colors"
+@import "mixins"
+.v-chip.v-size--small
+  height: 20px
+
+.v-chip__content
+  font-size: 10px
+  font-weight: 500
+  .v-chip__close
+    font-size: 15px
+    margin-top: -1px
+
+@each $color in $colors
+  $key: nth($color, 1)
+  $value: nth($color, 2)
+  @if $key != 'shades'
+    @include chips-color($key, map_get($value, 'base'), map_get($value, 'lighten-1'), map_get($value, 'darken-4'))

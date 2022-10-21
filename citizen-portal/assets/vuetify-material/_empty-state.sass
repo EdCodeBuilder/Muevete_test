@@ -1,0 +1,84 @@
+@import "mixins"
+.v-empty-state
+  @include v-empty-state-base()
+  max-width: 420px
+  padding: 36px
+  margin: 0 auto
+  position: relative
+  transition: opacity .15s cubic-bezier(0, 0, 0.2, 1), transform .3s cubic-bezier(0, 0, 0.2, 1)
+  will-change: transform, opacity
+
+  &.v-rounded
+    background-color: rgba(0,0,0,.06)
+    max-width: auto
+    border-radius: 50%
+
+    .v-empty-state-container
+      padding: 40px
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+
+  .v-button
+    margin: .5em 0 0
+
+.v-empty-state-enter
+  opacity: 0
+  transform: scale(.87)
+
+  .v-empty-state-container
+    opacity: 0
+
+.v-empty-state-container
+  @include v-empty-state-base()
+  transition: opacity .4s cubic-bezier(.4, 0, 0.2, 1)
+  will-change: opacity
+
+.v-empty-state-icon
+  @include v-icon-size(160px)
+  margin: 0
+
+.v-empty-state-label
+  font-size: 26px
+  font-weight: 500
+  line-height: 40px
+
+
+.v-empty-state-description
+  margin: 1em 0
+  font-size: 16px
+  line-height: 24px
+
+
+@media all and (max-width: 990px)
+  .v-empty-state-icon
+    @include v-icon-size(80px)
+    margin: 0
+
+  .v-empty-state
+    @include v-empty-state-base()
+    max-width: 220px
+    padding: 36px
+    margin: 0 auto
+    position: relative
+    transition: opacity .15s cubic-bezier(0, 0, 0.2, 1), transform .3s cubic-bezier(0, 0, 0.2, 1)
+    will-change: transform, opacity
+
+    &.v-rounded
+      background-color: rgba(0,0,0,.06)
+      max-width: 220px
+      max-height: 220px
+      border-radius: 50%
+
+      .v-empty-state-container
+        padding: 20px
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+
+    .v-button
+      margin: .5em 0 0

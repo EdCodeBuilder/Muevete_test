@@ -1,0 +1,71 @@
+@import "mixins";
+@import "colors";
+.theme--light.v-calendar{
+  .v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined):not(.primary) {
+    background-color: #999;
+    color: #333;
+    &:hover{
+      background-color: #999;
+      color: #333;
+    }
+  }
+}
+
+.v-calendar-weekly__day-label .v-btn {
+  font-size: 12px;
+  text-transform: none;
+  border-radius: 50%;
+  padding: .40625rem 1.25rem !important;
+}
+
+.v-calendar-daily_head-day-label .v-btn {
+  font-size: 12px;
+  text-transform: none;
+  border-radius: 50%;
+  padding: .40625rem 1.25rem !important;
+}
+
+@media only screen and (max-width: 767px)  {
+  .v-calendar-weekly__day-label .v-btn {
+    font-size: 12px;
+    text-transform: none;
+    border-radius: 50%;
+    padding: 0 0 !important;
+  }
+  .v-calendar-daily_head-day-label .v-btn {
+    font-size: 12px;
+    text-transform: none;
+    border-radius: 50%;
+    padding: 0 0 !important;
+  }
+}
+
+.v-picker--date {
+  .v-date-picker-table {
+    position: relative;
+    padding: 0 12px;
+    height: auto;
+    &--month {
+      .v-btn {
+        padding: 0;
+        border-radius: 2%;
+      }
+    }
+    &--date {
+      .v-btn {
+        padding: 0;
+        border-radius: 50%;
+        .v-btn--outlined {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+@each $color in $colors {
+  $key: nth($color, 1);
+  $value: nth($color, 2);
+  @if $key != 'shades' {
+    @include calendar-event-color( $key, map_get($value, 'base'), map_get($value, 'lighten-1'), map_get($value, 'darken-4') );
+  }
+}

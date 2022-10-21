@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule /?\.htaccess$ - [F,L]
+    RewriteBase /portal-ciudadano-dashboard
+    RewriteCond %{SERVER_PORT} 80
+    RewriteCond %{REQUEST_URI} portal-ciudadano-dashboard
+    RewriteRule ^(.*)$ https://sim.idrd.gov.co/portal-ciudadano-dashboard/$1 [R,L]
+    RewriteRule ^portal-ciudadano-dashboard/index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /portal-ciudadano-dashboard/index.html [L]
+</IfModule>

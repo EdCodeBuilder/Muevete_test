@@ -1,0 +1,113 @@
+@import '~vuetify/src/styles/tools/functions'
+@import "elevation-color"
+
+$icon-size: 24px !default
+
+@mixin elevation-color($color, $z, $important: false)
+  $shadows: color-shadow-generator($color)
+  box-shadow: map-deep-get($shadows, 'umbra', $z), map-deep-get($shadows, 'penumbra', $z), map-deep-get($shadows, 'ambient', $z) if($important, !important, null)
+
+//Item
+@mixin list-item-color($color, $shadow-color, $color-400, $color-600)
+  .v-list-item--active.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 12, true)
+    .v-list-item__title
+      color: set-text-color($shadow-color)
+
+//Buttons
+@mixin button-color($color, $isLight: true)
+  border-color: $color !important
+  @include elevation-color($color, 7, true)
+  &:focus,
+  &:active,
+  &:hover
+    @include elevation-color($color, 14, true)
+    @if( $isLight )
+      background-color: darken($color, 3%) !important
+
+  &.v-btn--flat
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    &:active:focus,
+    &:active:hover,
+    &.active:focus,
+    &.active:hover
+      background-color: transparent !important
+      box-shadow: none !important
+      i:not(.theme--dark)
+        color: $color !important
+
+
+@function set-text-color($color)
+  @if (lightness($color) > 50)
+    @return '#000000' // Lighter background, return dark color
+  @else
+    @return '#ffffff' // Darker background, return light color
+
+//Cards
+@mixin card-header-color($color, $shadow-color, $color-400, $color-600)
+  .v-card.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+  .v-card--material__heading.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+  .v-card--material__avatar.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+
+//Empty State
+@mixin v-empty-state-base ()
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  text-align: center
+
+@mixin v-icon-size($size: $icon-size)
+  width: $size
+  min-width: $size
+  height: $size
+  min-height: $size
+  font-size: $size !important
+
+//Calendar
+@mixin calendar-event-color($color, $shadow-color, $color-400, $color-600)
+  .v-event.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+  .v-event-timed.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+
+//Chips
+@mixin chips-color($color, $shadow-color, $color-400, $color-600)
+  .v-chip:not(.v-chip--outlined).#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+
+//Timeline
+@mixin timeline-dots-color($color, $shadow-color, $color-400, $color-600)
+  .v-timeline-item__inner-dot.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+
+//Toolbar
+@mixin toolbar-color($color, $shadow-color, $color-400, $color-600)
+  .v-toolbar.#{$color}
+    background: linear-gradient(60deg, $color-400, $color-600) !important
+    @include elevation-color($shadow-color, 10, true)
+
+//Chart
+@mixin chart-color($color, $shadow-color, $color-400, $color-600)
+  .ct-slice-pie
+    fill: $shadow-color !important
+
+//Heat Map
+@mixin heat-map-color($color, $key)
+  .svg-map__location-heat-#{$key}
+    fill: $color !important

@@ -1,0 +1,17 @@
+@import "colors"
+@import "mixins"
+.theme--light
+  #app-bar-dashboard
+    background: rgba(238, 238, 238, .6)
+    backdrop-filter: blur(50px)
+
+.theme--dark
+  #app-bar-dashboard
+    background: rgba(39, 39, 39, .6)
+    backdrop-filter: blur(50px)
+
+@each $color in $colors
+  $key: nth($color, 1)
+  $value: nth($color, 2)
+  @if $key != 'shades'
+    @include toolbar-color($key, map_get($value, 'base'), map_get($value, 'lighten-1'), map_get($value, 'darken-4'))

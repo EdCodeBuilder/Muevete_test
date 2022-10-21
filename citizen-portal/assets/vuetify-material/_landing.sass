@@ -1,0 +1,42 @@
+@import "~vuetify/src/styles/settings/variables"
+#blobs-animation
+  height: 100%
+  max-height: 100vh
+  max-width: 1785px
+  width: 100%
+  top: 0
+  right: 0
+  position: absolute
+  pointer-events: none
+
+
+@media (min-width: map-get($grid-breakpoints, 'xl') + 600px)
+  #blobs-animation
+    right: 1785px - 600px
+
+@media (min-width: map-get($grid-breakpoints, 'lg')) and (max-width: map-get($grid-breakpoints, 'xl'))
+  #blobs-animation
+    right: -100px
+
+@media (min-width: map-get($grid-breakpoints, 'sm')) and (max-width: map-get($grid-breakpoints, 'md'))
+  #blobs-animation
+    right: 300px
+
+@media (max-width: map-get($grid-breakpoints, 'sm'))
+  #blobs-animation
+    right: 0
+
+.theme--light
+  .main
+    background: #FFFFFF
+    position: relative
+.theme--dark
+  .main
+    background: #1E1E1E
+    position: relative
+.main-raised
+  margin: -60px 30px 20px
+  border-radius: $border-radius-root * 2
+@media (max-width: 991px)
+  .main-raised
+    margin: -60px 5px 0px
