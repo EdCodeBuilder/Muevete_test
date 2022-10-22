@@ -21,6 +21,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Adldap\Laravel\Middleware\WindowsAuthenticate::class,
+        // \Fruitcake\Cors\HandleCors::class
+        \App\Http\Middleware\Cors::class
     ];
 
     /**
