@@ -203,7 +203,7 @@ class Roles
             'abilities' => array_values($abilities),
             'roles' => array_values(
                 collect(auth('api')->user()->roles)->filter(function ($item) {
-                    return (false !== stristr($item->name, Roles::IDENTIFIER)) || (false !== stristr($item->name, 'superadmin'));
+                    return (false !== stristr($item->name, Roles::IDENTIFIER)) || (false !== stristr($item->name, 'superadmin')) || (false !== stristr($item->name, 'citizen-portal-admin'));
                 })->toArray()
             ),
         ];
