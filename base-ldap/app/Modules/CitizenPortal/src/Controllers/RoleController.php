@@ -32,7 +32,13 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::query()->where('name', 'like', '%citizen-portal%')->get();
+        // $roles = Role::query()->where('name', 'like', '%')->get();
+        // return
+        $roles = Role::query()
+        ->join('assigned_roles','assigned_roles.role_id','=','roles.id')
+        ->where('roles.name', 'like', '%')
+        ->select('assigned_roles.entity_id', 'roles.name')
+        ->get();
         return $this->success_response(
             RoleResource::collection( $roles )
         );
