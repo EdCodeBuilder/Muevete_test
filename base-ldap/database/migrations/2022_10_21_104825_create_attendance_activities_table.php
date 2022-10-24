@@ -15,14 +15,16 @@ class CreateAttendanceActivitiesTable extends Migration
     {
         Schema::connection('mysql_citizen_portal')->create('attendance_activities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('fecha');
+            $table->date('fecha')->nullable();
+            // $table->bigInteger('institucion');
             $table->string('institucion');
+            // $table->bigInteger('actividad');
             $table->string('actividad');
-            $table->string('contenido');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
+            $table->string('contenido')->nullable();
+            $table->time('hora_inicio')->nullable();
+            $table->time('hora_fin')->nullable();
             $table->timestamps();
-            $table->timestamp('delete_at');
+            $table->timestamp('delete_at')->nullable();
         });
     }
 
