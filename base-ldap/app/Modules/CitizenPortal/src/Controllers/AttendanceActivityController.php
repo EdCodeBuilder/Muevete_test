@@ -4,6 +4,12 @@ namespace App\Modules\CitizenPortal\src\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\CitizenPortal\src\Models\AttendanceActivity;
+use App\Modules\CitizenPortal\src\Constants\Roles;
+use App\Modules\CitizenPortal\src\Models\CitizenSchedule;
+use App\Modules\CitizenPortal\src\Models\Schedule;
+use App\Modules\CitizenPortal\src\Request\AttendanceActivityRequest;
+use App\Modules\CitizenPortal\src\Resources\AttendanceActivityResource;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -121,9 +127,14 @@ class AttendanceActivityController extends Controller
      * @param  \App\AttendanceActivity  $attendanceActivity
      * @return JsonResponse
      */
-    public function update(Request $request, AttendanceActivity $attendanceActivity)
+    public function update(AttendanceActivityRequest $request, AttendanceActivity $attendanceActivity)
     {
-        //
+        $attrs = $attendanceActivity->fillModel($request->validated());
+        $attendanceActivity->fill($attrs);
+        $attendanceActivity->save();
+        return $this->success_message(
+            __('validation.handler.updated')
+        );
     }
 
     /**
@@ -132,8 +143,19 @@ class AttendanceActivityController extends Controller
      * @param  \App\AttendanceActivity  $attendanceActivity
      * @return JsonResponse
      */
+
+     /**
+      * @param AttendanceActivity $attendanceActivity
+      * @return JsonResponse
+      * @throws Exception
+      */
     public function destroy(AttendanceActivity $attendanceActivity)
     {
-        //
+        $attendanceActivity->delete();
+        return $this->success_message(
+            __('validation.handler.deleted'),
+            Response::HTTP_OK,
+            Response::HTTP_NO_CONTENT
+        );
     }
 }
