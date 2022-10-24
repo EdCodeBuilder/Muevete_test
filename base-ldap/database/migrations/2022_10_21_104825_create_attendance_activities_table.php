@@ -13,9 +13,16 @@ class CreateAttendanceActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendance_activities', function (Blueprint $table) {
+        Schema::connection('mysql_citizen_portal')->create('attendance_activities', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->date('fecha');
+            $table->string('institucion');
+            $table->string('actividad');
+            $table->string('contenido');
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
             $table->timestamps();
+            $table->timestamp('delete_at');
         });
     }
 
