@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(AttendanceActivity::class, function (Faker $faker) {
     return [
-        'id'            =>rand(23, 26),
+        // 'id'            =>rand(23, 26),
         'fecha'         =>$faker->date($format = 'Y-m-d'),
         // 'date'       =>null,
         'institucion'   =>$faker->word(),

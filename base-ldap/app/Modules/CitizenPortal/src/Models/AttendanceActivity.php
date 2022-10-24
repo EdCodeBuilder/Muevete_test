@@ -24,7 +24,7 @@ class AttendanceActivity extends Model implements Auditable
      *
      * @var string
      */
-    protected $table = "attendance_activity";
+    protected $table = "attendance_activities";
 
     /**
      * The primary key for the model.
